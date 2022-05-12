@@ -4,6 +4,7 @@ const state = () => ({
   listBook: [],
   listHomeBook: [],
   listAuthor: [],
+  bookDetail: {},
 })
 
 const mutations = {
@@ -15,6 +16,9 @@ const mutations = {
   },
   setListAuthor(state, param) {
     state.listAuthor = param
+  },
+  setBookDetail(state, param) {
+    state.setBookDetail = param
   },
 }
 
@@ -60,6 +64,31 @@ const actions = {
       `,
     })
     store.commit('setListAuthor', response.data.book)
+  },
+  async fetchBookByTitle(store, title) {
+    const response = await this.app.apolloProvider.defaultClient.query({
+      query: gql`
+        query MyQuery($title: String!) {
+          book(where: { title: { _eq: $title } }) {
+            author
+            image
+            slug
+            title
+            detail {
+              category
+              country
+              description
+              language
+              page_count
+              publisher
+              release_date
+            }
+          }
+        }
+      `,
+      variables: { title },
+    })
+    store.commit('setBookDetail', response.data.book)
   },
 }
 
