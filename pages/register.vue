@@ -9,7 +9,7 @@
           <v-text-field label="Nama Lengkap" outlined dense class="wth my-0">
           </v-text-field>
           <v-text-field
-            v-model="password"
+            type="password"
             label="Password"
             outlined
             dense

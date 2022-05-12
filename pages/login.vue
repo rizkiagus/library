@@ -10,7 +10,13 @@
         <div>
           <v-text-field label="Username" outlined dense class="wth my-0">
           </v-text-field>
-          <v-text-field label="Password" outlined dense class="wth my-0">
+          <v-text-field
+            type="password"
+            label="Password"
+            outlined
+            dense
+            class="wth my-0"
+          >
           </v-text-field>
         </div>
         <p
