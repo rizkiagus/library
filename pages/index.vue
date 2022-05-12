@@ -12,7 +12,7 @@
           <p class="text-capitalize main--text mt-6">
             daftar sekarang, untuk menikmati layanan kami
           </p>
-          <v-btn color="title" depressed>
+          <v-btn color="title" depressed to="/register">
             <span class="white--text body-1 font-weight-bold text-capitalize">
               daftar
             </span>
@@ -24,7 +24,8 @@
           width="700"
           src="https://ik.imagekit.io/dgzn8o9mn/miniproject/43122_BQFUTgbIB.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651582230342"
           alt="Book"
-        ></v-img>
+        >
+        </v-img>
       </v-col>
     </v-row>
     <v-row>
@@ -33,7 +34,7 @@
       </v-col>
       <v-spacer></v-spacer>
       <v-col class="text-right mt-6">
-        <v-btn depressed plain retain-focus-on-click>
+        <v-btn depressed plain retain-focus-on-click to="/home">
           <h4 class="text-capitalize title--text">lihat semua</h4>
         </v-btn>
       </v-col>

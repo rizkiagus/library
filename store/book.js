@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 const state = () => ({
   listBook: [],
   listHomeBook: [],
+  listAuthor: [],
 })
 
 const mutations = {
@@ -11,6 +12,9 @@ const mutations = {
   },
   setListHomeBook(state, param) {
     state.listHomeBook = param
+  },
+  setListAuthor(state, param) {
+    state.listAuthor = param
   },
 }
 
@@ -44,6 +48,18 @@ const actions = {
       `,
     })
     store.commit('setListHomeBook', response.data.book)
+  },
+  async fetchAuthor(store) {
+    const response = await this.app.apolloProvider.defaultClient.query({
+      query: gql`
+        query getAuthor {
+          book {
+            author
+          }
+        }
+      `,
+    })
+    store.commit('setListAuthor', response.data.book)
   },
 }
 

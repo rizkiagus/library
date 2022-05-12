@@ -23,8 +23,19 @@
           </v-btn>
         </v-btn-toggle>
       </v-row>
+      <v-row class="mb-0">
+        <v-btn-toggle group mandatory dense color="main">
+          <v-btn class="text-capitalize title--text font-weight-bold" depressed>
+            Buku
+          </v-btn>
+          <v-btn class="text-capitalize title--text font-weight-bold" depressed>
+            Penulis
+          </v-btn>
+        </v-btn-toggle>
+      </v-row>
+      <v-divider></v-divider>
     </div>
-    <v-row>
+    <v-row class="mt-2">
       <v-col
         v-for="book in getHomeBook"
         :key="book.book_id"

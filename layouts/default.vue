@@ -1,7 +1,12 @@
 <template>
   <v-app>
     <v-app-bar fixed app dense color="#00afb9" class="rounded-t-lg">
-      <v-toolbar-title class="h1 font-weight-bold white--text" v-text="title" />
+      <v-toolbar-title
+        class="h1 font-weight-bold white--text"
+        style="cursor: pointer"
+        @click="$router.push('/')"
+        v-text="title"
+      />
       <v-spacer />
       <v-toolbar flat width="150" class="rounded-l-lg" height="27">
         <v-text-field
@@ -24,8 +29,8 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <v-spacer />
-      <v-btn color="#0081A7" small depressed>
-        <span class="white--text text-capitalize">Masuk</span>
+      <v-btn color="#0081A7" small depressed to="/login">
+        <span class="white--text text-capitalize"> Masuk </span>
       </v-btn>
     </v-app-bar>
     <v-main class="mx-6 mb-6">
@@ -51,16 +56,16 @@
         <v-col cols="3" class="pb-0">
           <h3>Tentang Library</h3>
           <div class="pt-2">
-            <p class="caption">Tentang Kami</p>
+            <p class="caption pointer">Tentang Kami</p>
           </div>
         </v-col>
         <v-col cols="3" class="pb-0">
           <h3>Lainnya</h3>
           <div class="pt-2">
-            <p class="caption">Syarat & Ketentuan</p>
-            <p class="caption">Kebijakan & Privasi</p>
-            <p class="caption">Bantuan</p>
-            <p class="caption">Hubungi Kami</p>
+            <p class="caption pointer">Syarat & Ketentuan</p>
+            <p class="caption pointer">Kebijakan & Privasi</p>
+            <p class="caption pointer">Bantuan</p>
+            <p class="caption pointer">Hubungi Kami</p>
           </div>
         </v-col>
       </v-row>
@@ -80,4 +85,8 @@ export default {
   },
 }
 </script>
-<style></style>
+<style>
+.pointer {
+  cursor: pointer;
+}
+</style>
