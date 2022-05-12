@@ -57,6 +57,7 @@
           </v-card-subtitle>
           <v-card-title
             class="subtitle-2 text-capitalize font-weight-bold title--text text-left mt-1 py-1"
+            @click="() => redirect(book.title)"
           >
             {{ book.title }}
           </v-card-title>
@@ -80,6 +81,9 @@ export default {
   methods: {
     fetchBook() {
       this.$store.dispatch('book/fetchBook')
+    },
+    redirect(title) {
+      return this.$router.push(`/products/${title}`)
     },
   },
 }
