@@ -7,6 +7,7 @@
             value="comic"
             class="text-capitalize title--text font-weight-bold"
             depressed
+            @click="getComic()"
             >Komik
           </v-btn>
           <v-btn
@@ -44,8 +45,14 @@
         sm="4"
         xs="6"
       >
-        <v-card width="300" height="400" hover>
-          <v-img :src="book.image" width="200" height="250"> </v-img>
+        <v-card
+          width="300"
+          height="400"
+          hover
+          @click="() => redirect(book.slug)"
+        >
+          <v-img :src="book.image" width="200" height="250" class="mx-auto">
+          </v-img>
           <v-card-subtitle
             class="text-caption main--text text-left text-capitalize py-1"
           >
@@ -62,6 +69,8 @@
   </div>
 </template>
 <script>
+import gql from 'graphql-tag'
+
 export default {
   name: 'HomePage',
   setup() {},
@@ -76,6 +85,24 @@ export default {
   methods: {
     fetchHomeBook() {
       this.$store.dispatch('book/fetchHomeBook')
+    },
+    redirect(title) {
+      return this.$router.push(`/products/${title}`)
+    },
+    async getComic() {
+      await this.$apollo.query({
+        query: gql`
+          query getComic($category: String) {
+            book(where: { detail: { category: { _eq: $category } } }) {
+              author
+              image
+              slug
+              title
+            }
+          }
+        `,
+        variables: { category: 'comic' },
+      })
     },
   },
 }

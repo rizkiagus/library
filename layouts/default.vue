@@ -8,7 +8,7 @@
         v-text="title"
       />
       <v-spacer />
-      <v-toolbar flat width="150" class="rounded-l-lg" height="27">
+      <v-toolbar flat width="150" class="rounded-l-lg d-block" height="27">
         <v-text-field
           clearable
           flat
@@ -34,11 +34,17 @@
       </v-btn>
     </v-app-bar>
     <v-main class="mx-6 mb-6">
-      <Nuxt />
+      <v-row>
+        <v-col sm="0" md="0" lg="2" xl="4"></v-col>
+        <v-col sm="12" md="12" lg="8" xl="4">
+          <Nuxt />
+        </v-col>
+        <v-col sm="0" md="0" lg="2" xl="4"></v-col>
+      </v-row>
     </v-main>
-    <v-footer app color="main" height="200" absolute>
+    <v-footer app color="main" min-height="300" absolute>
       <v-row class="white--text">
-        <v-col cols="3" class="pb-0">
+        <v-col md="3" sm="12" class="pb-0">
           <h1>Library</h1>
           <div class="caption">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus
@@ -47,19 +53,19 @@
             animi.
           </div>
         </v-col>
-        <v-col cols="3" class="pb-0">
+        <v-col sm="12" md="3" class="pb-0">
           <h3>Konteks 1</h3>
           <div class="pt-2">
             <p class="caption pointer">Konteks 1</p>
           </div>
         </v-col>
-        <v-col cols="3" class="pb-0">
+        <v-col sm="12" md="3" class="pb-0">
           <h3>Tentang Library</h3>
           <div class="pt-2">
             <p class="caption pointer">Tentang Kami</p>
           </div>
         </v-col>
-        <v-col cols="3" class="pb-0">
+        <v-col sm="12" md="3" class="pb-0">
           <h3>Lainnya</h3>
           <div class="pt-2">
             <p class="caption pointer">Syarat & Ketentuan</p>
@@ -88,5 +94,8 @@ export default {
 <style>
 .pointer {
   cursor: pointer;
+}
+.pointer:hover {
+  color: #0081a7;
 }
 </style>

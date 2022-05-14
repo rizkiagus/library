@@ -46,10 +46,16 @@
         lg="2"
         md="2"
         sm="4"
-        xs="6"
+        xs="12"
       >
-        <v-card width="300" height="400" hover>
-          <v-img :src="book.image" width="200" height="250"> </v-img>
+        <v-card
+          width="300"
+          height="400"
+          hover
+          @click="() => redirect(book.slug)"
+        >
+          <v-img :src="book.image" width="200" height="250" class="mx-auto">
+          </v-img>
           <v-card-subtitle
             class="text-caption main--text text-left text-capitalize py-1"
           >
@@ -80,6 +86,9 @@ export default {
   methods: {
     fetchBook() {
       this.$store.dispatch('book/fetchBook')
+    },
+    redirect(title) {
+      return this.$router.push(`/products/${title}`)
     },
   },
 }
