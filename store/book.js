@@ -5,6 +5,8 @@ const state = () => ({
   listHomeBook: [],
   listAuthor: [],
   bookDetail: {},
+  getByCategory: [],
+  listBySearch: [],
 })
 
 const mutations = {
@@ -19,6 +21,12 @@ const mutations = {
   },
   setBookDetail(state, param) {
     state.bookDetail = param
+  },
+  setGetByCategory(state, param) {
+    state.getByCategory = param
+  },
+  setListBySearch(state, param) {
+    state.listBySearch = param
   },
 }
 
@@ -43,7 +51,7 @@ const actions = {
     const response = await this.app.apolloProvider.defaultClient.query({
       query: gql`
         query getBook {
-          book {
+          book(order_by: { book_id: desc }) {
             book_id
             title
             image
@@ -91,6 +99,39 @@ const actions = {
       variables: { slug },
     })
     store.commit('setBookDetail', response.data.book)
+  },
+  async fetchBookByCategory(store, category) {
+    const response = await this.app.apolloProvider.defaultClient.query({
+      query: gql`
+        query getComic($category: String) {
+          book(where: { detail: { category: { _eq: $category } } }) {
+            author
+            image
+            slug
+            title
+          }
+        }
+      `,
+      variables: { category },
+    })
+    store.commit('setGetByCategory', response.data.book)
+  },
+
+  async getListFromSearch(store, keyword) {
+    const response = await this.app.apolloProvider.defaultClient.query({
+      query: gql`
+        query findBook($keyword: String) {
+          book(where: { slug: { _like: $keyword } }) {
+            book_id
+            image
+            slug
+            title
+          }
+        }
+      `,
+      variables: { keyword: '%' + keyword + '%' },
+    })
+    store.commit('setListBySearch', response.data.book)
   },
 }
 

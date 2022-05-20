@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-row>
+    <v-row class="mt-2">
       <v-col sm="12" md="4" lg="4" xl="4">
         <div>
-          <p class="text-capitalize mb-0 mt-12 pt-12 text-caption main--text">
+          <p class="text-capitalize mb-0 mt-3 text-caption main--text">
             jelajahi buku favorit anda disini
           </p>
           <h1 class="text-uppercase pt-0 title--text">
@@ -24,6 +24,7 @@
           width="700"
           src="https://ik.imagekit.io/dgzn8o9mn/miniproject/43122_BQFUTgbIB.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1651582230342"
           alt="Book"
+          class="img-landing"
         >
         </v-img>
       </v-col>
@@ -34,14 +35,16 @@
       </v-col>
       <v-spacer></v-spacer>
       <v-col class="text-right mt-6">
-        <v-btn depressed plain retain-focus-on-click to="/home">
+        <v-btn depressed plain retain-focus-on-click to="/home/latestbook">
           <h4 class="text-capitalize title--text">lihat semua</h4>
         </v-btn>
       </v-col>
     </v-row>
     <v-row class="px-2">
+      <v-col v-if="$apollo.loading">Loading...</v-col>
       <v-col
         v-for="book in getBook"
+        v-else
         :key="book.book_id"
         lg="2"
         md="2"
@@ -93,4 +96,8 @@ export default {
   },
 }
 </script>
-<style scoped></style>
+<style>
+.img-landing {
+  margin-top: -50px;
+}
+</style>

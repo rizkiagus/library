@@ -8,9 +8,16 @@
           Silahkan masuk menggunakan akun anda
         </p>
         <div>
-          <v-text-field label="Username" outlined dense class="wth my-0">
+          <v-text-field
+            v-model="username"
+            label="Username"
+            outlined
+            dense
+            class="wth my-0"
+          >
           </v-text-field>
           <v-text-field
+            v-model="password"
             type="password"
             label="Password"
             outlined
@@ -29,6 +36,7 @@
           color="title"
           block
           class="subtitle-1 font-weight-bold text-capitalize white--text mb-2"
+          @click="userlogin()"
         >
           masuk
         </v-btn>
@@ -58,6 +66,17 @@
 export default {
   name: 'LoginPage',
   setup() {},
+  data() {
+    return {
+      username: '',
+      password: '',
+    }
+  },
+  methods: {
+    userlogin() {
+      this.$store.dispatch('user/getListUser', this.username, this.password)
+    },
+  },
 }
 </script>
 <style>

@@ -4,11 +4,24 @@
       <v-col sm="12" md="4" lg="4" xl="4" class="mt-12 pt-12">
         <p class="text-h4 text-capitalize title--text mb-0">daftar</p>
         <div>
-          <v-text-field label="Username" outlined dense class="wth my-0">
-          </v-text-field>
-          <v-text-field label="Nama Lengkap" outlined dense class="wth my-0">
+          <v-text-field
+            v-model="username"
+            label="Username"
+            outlined
+            dense
+            class="wth my-0"
+          >
           </v-text-field>
           <v-text-field
+            v-model="namalengkap"
+            label="Nama Lengkap"
+            outlined
+            dense
+            class="wth my-0"
+          >
+          </v-text-field>
+          <v-text-field
+            v-model="password"
             type="password"
             label="Password"
             outlined
@@ -21,6 +34,7 @@
           color="title"
           block
           class="subtitle-1 font-weight-bold text-capitalize white--text mb-2"
+          @click="register()"
         >
           daftar
         </v-btn>
@@ -47,9 +61,47 @@
   </div>
 </template>
 <script>
+import { gql } from 'graphql-tag'
 export default {
   name: 'RegisterPage',
   setup() {},
+  data() {
+    return {
+      username: '',
+      namalengkap: '',
+      password: '',
+    }
+  },
+  methods: {
+    async register() {
+      await this.$apollo.mutate({
+        mutation: gql`
+          mutation addUser(
+            $namalengkap: String
+            $passwrod: String
+            $username: String
+          ) {
+            insert_user(
+              objects: {
+                username: $username
+                namalengkap: $namalengkap
+                passwrod: $passwrod
+              }
+            ) {
+              returning {
+                id
+              }
+            }
+          }
+        `,
+        variables: {
+          username: this.username,
+          namalengkap: this.namalengkap,
+          passwrod: this.password,
+        },
+      })
+    },
+  },
 }
 </script>
 <style></style>

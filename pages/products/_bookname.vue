@@ -1,26 +1,35 @@
 <template>
   <div>
-    <v-row>
-      <v-col cols="2">
+    <v-row class="mt-2">
+      <v-col md="2" sm="12" xs="12">
         <v-card width="200" height="250">
-          <v-img :src="getDetail[0].image" width="150" class="mx-auto"></v-img>
+          <v-img
+            :src="`${getDetail[0] ? getDetail[0].image : ''}`"
+            width="150"
+            class="mx-auto"
+          ></v-img>
         </v-card>
       </v-col>
       <v-col cols="10">
         <div class="header">
           <p class="main--text text-capitalize caption">
-            {{ getDetail[0].author }}
+            {{ getDetail[0] ? getDetail[0].author : '' }}
           </p>
-          <p class="main--text text-capitalize text-h5">
-            {{ getDetail[0].title }}
-          </p>
+          <div class="main--text d-flex flex-rows justify-space-between">
+            <p class="main--text text-capitalize text-h5">
+              {{ getDetail[0] ? getDetail[0].title : '' }}
+            </p>
+            <v-btn icon>
+              <v-icon> mdi-heart-outline</v-icon>
+            </v-btn>
+          </div>
         </div>
         <div class="deskripsi">
           <p class="title--text caption font-weight-bold mb-0">
             Deskripsi Buku
           </p>
           <p class="main--text mt-0 py-0 text-body-2">
-            {{ getDetail[0].detail.description }}
+            {{ getDetail[0] ? getDetail[0].detail.description : '' }}
           </p>
         </div>
         <div class="detailbook">
@@ -33,16 +42,18 @@
                 jumlah halaman
               </span>
               <span class="caption main--text text-capitalize d-block">
-                {{ getDetail[0].detail.page_count }}
+                {{ getDetail[0] ? getDetail[0].detail.page_count : '' }}
               </span>
               <span class="caption main--text text-capitalize d-block mt-3">
                 tanggal terbit
               </span>
               <span class="caption main--text text-capitalize d-block">
                 {{
-                  $moment(getDetail[0].detail.release_date).format(
-                    'DD MMM YYYY'
-                  )
+                  getDetail[0]
+                    ? $moment(getDetail[0].detail.release_date).format(
+                        'DD MMM YYYY'
+                      )
+                    : ''
                 }}
               </span>
             </v-col>
@@ -51,13 +62,13 @@
                 Penerbit
               </span>
               <span class="caption main--text text-capitalize d-block">
-                {{ getDetail[0].detail.publisher }}
+                {{ getDetail[0] ? getDetail[0].detail.publisher : '' }}
               </span>
               <span class="caption main--text text-capitalize d-block mt-3">
                 Bahasa
               </span>
               <span class="caption main--text text-capitalize d-block">
-                {{ getDetail[0].detail.language }}
+                {{ getDetail[0] ? getDetail[0].detail.language : '' }}
               </span>
             </v-col>
           </v-row>
