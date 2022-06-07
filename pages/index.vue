@@ -6,10 +6,14 @@
           <p class="text-capitalize mb-0 mt-3 text-caption main--text">
             jelajahi buku favorit anda disini
           </p>
-          <h1 class="text-uppercase pt-0 title--text">
+          <h1
+            class="text-uppercase pt-0 title--text text-h6 text-md-h4 text-lg-h4 text-xl-h4 font-weight-bold"
+          >
             bawalah buku yang bagus untuk tidur bersamamu
           </h1>
-          <p class="text-capitalize main--text mt-6">
+          <p
+            class="text-capitalize main--text mt-6 text-caption text-sm-body-2 text-md-title"
+          >
             daftar sekarang, untuk menikmati layanan kami
           </p>
           <v-btn color="title" depressed to="/register">
@@ -30,11 +34,14 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
-        <h3 class="text-capitalize title--text my-2">buku-buku terbaru</h3>
+      <v-col sm="12" md="6">
+        <h3
+          class="text-capitalize title--text my-2 text-caption text-sm-body-2 text-md-h6 text-lg-h6 text-xl-h6 font-weight-bold"
+        >
+          buku-buku terbaru
+        </h3>
       </v-col>
-      <v-spacer></v-spacer>
-      <v-col class="text-right mt-6">
+      <v-col class="text-md-right mt-6" sm="12" md="6">
         <v-btn depressed plain retain-focus-on-click to="/home/latestbook">
           <h4 class="text-capitalize title--text">lihat semua</h4>
         </v-btn>

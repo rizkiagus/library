@@ -86,24 +86,8 @@
             sm="2"
           >
             <v-card
-              :width="
-                $vuetify.breakpoint.xs
-                  ? '50px'
-                  : $vuetify.breakpoint.sm
-                  ? '100px'
-                  : $vuetify.breakpoint.md
-                  ? '200px'
-                  : 1000
-              "
-              :height="
-                $vuetify.breakpoint.xs
-                  ? '50px'
-                  : $vuetify.breakpoint.sm
-                  ? '100px'
-                  : $vuetify.breakpoint.md
-                  ? '200px'
-                  : 1000
-              "
+              max-height="200"
+              max-width="200"
               hover
               @click="() => redirect(comic.slug)"
             >
